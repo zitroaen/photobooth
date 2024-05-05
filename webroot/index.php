@@ -3,7 +3,7 @@
 include('config/config.php');
 ?>
 
-
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -39,7 +39,6 @@ include('config/config.php');
 
 
 <div id="photoFrame">
-<img id="photo" src="" alt="no image loaded">
 </div>
 
 
@@ -67,7 +66,6 @@ function startPictureCountdown() {
 }
 
 
-
     function takePicture() {
       var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -75,6 +73,12 @@ function startPictureCountdown() {
     // document.getElementById("demo").innerHTML = this.responseText;
     response = JSON.parse(this.responseText)
     console.log(response);
+
+    var photoFrame = document.getElementById("photoFrame"); 
+    const pic = document.createElement("img"); //append a img element that will contain the picture 
+    pic.alt = 'Well shit - something went wrong' 
+    pic.id = 'photo'          //Set the ID so the text can be set via Javascript
+    photoFrame.appendChild(pic);
     document.getElementById("photo").src=response.path + response.fileName;
     }
   };
@@ -82,9 +86,11 @@ function startPictureCountdown() {
   xhttp.send();
 }
 
-
-
-
+document.addEventListener ("keyup", (evt) => {
+	if (evt.keyCode === <?php echo $startPhotoCountdown; ?>) {
+        startPictureCountdown();
+	}
+});
 
 
 </script>

@@ -3,7 +3,7 @@
 include('config/config.php');
 ?>
 
-
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -16,6 +16,9 @@ include('config/config.php');
     <script src="<?php echo $jqueryPath; ?>"></script>
 -->
     <script src="<?php echo $nanogallery2Path; ?>"></script>
+    <script src="<?php echo $nanogallery2PhotoProviderPath; ?>"></script>
+    <link rel="stylesheet" href="<?php echo $nanogallery2Css; ?>">
+
   </head>
 
 <body>
@@ -33,7 +36,8 @@ jQuery(document).ready(function () {
                 thumbnailWidth:   'auto',
                 thumbnailHeight:  150,
                 kind:             'nano_photos_provider2',
-                dataProvider:     '<?php echo $nanoPhotosProviderPath; ?>',
+                //dataProvider:     '<?php echo $nanoPhotosProviderPath; ?>',
+                dataProvider:     'resources/photos/nano_photos_provider2.php',
                 locationHash:     false
               });
             });

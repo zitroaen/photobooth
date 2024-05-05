@@ -19,6 +19,10 @@ $galleryButtonImage = "resources/img/galleryButtonImage.svg";
 $photoButtonText = "Käse!";
 $photoButtonImage = "resources/img/photoButtonImage.svg";
 
+
+#Keycodes
+$startPhotoCountdown = 13; #Keycode for starting the Photo Countdown (13=Enter)
+
 #############################################################
 #Other stuff that probably noone will ever need to touch
 #############################################################
@@ -41,6 +45,9 @@ $fileExtension = 'jpg';
 
 #gallery
 $nanogallery2Path = 'resources/js/nanogallery2/jquery.nanogallery2.core.js'; # path to the nanogallery2 installation
+$nanogallery2PhotoProviderPath = 'resources/js/nanogallery2/jquery.nanogallery2.data_nano_photos_provider2.js'; # path to the nanogallery2 Photo Provider module
+$nanogallery2Css = 'resources/js/nanogallery2/css/nanogallery2.css'; #path to the nanogallery2 CSS file
+
 $nanoPhotosProviderPath = 'resources/photos/nano_photos_provider2.php';# path to the photos provider
 $jqueryPath = 'resources/js/jquery-3.7.1.min.js'; #Path to jquery
 
