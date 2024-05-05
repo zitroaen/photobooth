@@ -28,7 +28,7 @@ $countDownTime = 3; #Time in seconds for the countdown
 #$takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
 $takePhotoCommand = 'echo %s'; #%s is the placeholder for the filename that the script will automatically genrate 
 date_default_timezone_set('Europe/Berlin'); // Timezone for the picture filename
-$photoPath = 'resources/photos/original';
+$photoPath = realpath('resources/photos/original');
 
 #gallery
 $nanogallery2Path = 'resources/js/nanogallery2/jquery.nanogallery2.core.js'; # path to the nanogallery2 installation
