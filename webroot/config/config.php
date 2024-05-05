@@ -25,8 +25,8 @@ $photoButtonImage = "resources/img/photoButtonImage.svg";
 
 #Take Photo
 $countDownTime = 3; #Time in seconds for the countdown
-$takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
-#$takePhotoCommand = 'echo %s'; #%s is the placeholder for the filename that the script will automatically genrate 
+#$takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
+$takePhotoCommand = 'echo %s'; #%s is the placeholder for the filename that the script will automatically genrate 
 date_default_timezone_set('Europe/Berlin'); // Timezone for the picture filename
 $photoPath = realpath('resources/photos/original');
 
