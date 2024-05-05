@@ -14,8 +14,8 @@ $command = sprintf($takePhotoCommand, $fileName);
 #Take Photo#####################
 $output=null;
 $retval=null;
-
-    exec("cd $photoPath && $command" , $output, $retval); #execute the "take Photo" command
+    chdir($photoPath);
+    exec($command , $output, $retval); #execute the "take Photo" command
     $data = ['returnValue'=> $retval,'output' => $output, 'path' => $photoPath, 'fileName' => $fileName ];  #construct the response
 
 
