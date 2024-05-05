@@ -14,11 +14,10 @@ $command = sprintf($takePhotoCommand, $fileName);
 #Take Photo#####################
 $output=null;
 $retval=null;
-exec("cd $photoPath", $output, $retval);
-if ($retval==0){
-    exec($command , $output, $retval); #execute the "take Photo" command
+
+    exec("cd $photoPath && $command" , $output, $retval); #execute the "take Photo" command
     $data = ['returnValue'=> $retval,'output' => $output, 'path' => $photoPath, 'fileName' => $fileName ];  #construct the response
-}
+
 
 if ($retval!=0){ #something went wrong!a
     $data = ['returnValue'=> $retval, 'output' => $output];  #construct the response
