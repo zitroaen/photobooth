@@ -24,7 +24,7 @@ $photoButtonImage = "resources/img/photoButtonImage.svg";
 #############################################################
 
 #Take Photo
-$countDownTime = 3; #Time in seconds for the countdown
+$countdownTime = 3; #Time in seconds for the countdown
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
     #Using Windows
