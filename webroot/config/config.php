@@ -35,8 +35,8 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testi
 }
 
 #
-date_default_timezone_set('Europe/Berlin'); // Timezone for the picture filename
-$photoPath = realpath('resources/photos/original');
+date_default_timezone_set('Europe/Berlin'); # Timezone for the picture filename
+$photoPath = 'resources/photos/original/';  #Path where photos should be stored. Must end in a "/"
 $fileExtension = 'jpg';
 
 #gallery

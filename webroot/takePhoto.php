@@ -14,15 +14,18 @@ $command = sprintf($takePhotoCommand, $fileName);
 #Take Photo#####################
 $output=null;
 $retval=null;
-    chdir($photoPath);
+    if (chdir(realpath($photoPath))){
+       exec($command , $output, $retval); #execute the "take Photo" command
+       $data = ['returnValue'=> $retval,'output' => $output, 'path' => $photoPath, 'fileName' => $fileName ];  #construct the response
 
-    exec($command , $output, $retval); #execute the "take Photo" command
-    $data = ['returnValue'=> $retval,'output' => $output, 'path' => getcwd(), 'fileName' => $fileName ];  #construct the response
+        if ($retval!=0){ #something went wrong!a
+            $data = ['returnValue'=> $retval, 'output' => $output];  #construct the response
+        } 
+    }else {
+        $data = ['returnValue'=> '-1', 'output' => 'could not chdir to desired path'];  #construct the response
+    }
 
-
-if ($retval!=0){ #something went wrong!a
-    $data = ['returnValue'=> $retval, 'output' => $output];  #construct the response
-}
+    
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($data);
