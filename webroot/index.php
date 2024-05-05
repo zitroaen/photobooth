@@ -28,13 +28,31 @@ include('config/config.php');
   <img src="<?php echo $galleryButtonImage; ?>" alt="">
 </a>
 
-<a href="takePhoto.php">
+<a href="#" onclick="takePicture()">
   <div id="photoButton" class="nav">
     <?php echo $photoButtonText; ?>
   </div>
   <img src="<?php echo $photoButtonImage; ?>" alt="">
 </a>
 
+
+<script>
+
+
+
+
+    function takePicture() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    // document.getElementById("demo").innerHTML = this.responseText;
+    console.log(this.responseText);
+    }
+  };
+  xhttp.open("GET", "takePhoto.php", true);
+  xhttp.send();
+}
+</script>
 
 
 </body>

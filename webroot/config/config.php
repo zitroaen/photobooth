@@ -25,10 +25,19 @@ $photoButtonImage = "resources/img/photoButtonImage.svg";
 
 #Take Photo
 $countDownTime = 3; #Time in seconds for the countdown
-#$takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
-$takePhotoCommand = 'echo %s'; #%s is the placeholder for the filename that the script will automatically genrate 
+
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
+    #Using Windows
+    $takePhotoCommand = 'echo %s'; #%s is the placeholder for the filename that the script will automatically genrate 
+} else {
+    #Not using windows 
+    $takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
+}
+
+#
 date_default_timezone_set('Europe/Berlin'); // Timezone for the picture filename
 $photoPath = realpath('resources/photos/original');
+$fileExtension = 'jpg';
 
 #gallery
 $nanogallery2Path = 'resources/js/nanogallery2/jquery.nanogallery2.core.js'; # path to the nanogallery2 installation

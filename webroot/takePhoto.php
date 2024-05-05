@@ -7,7 +7,7 @@ include('config/config.php');
 
 
 #Construct System Call
-$fileName = date('mdY_His', time()); 
+$fileName = date('mdY_His', time()) . "." .$fileExtension; 
 $command = sprintf($takePhotoCommand, $fileName);
 
 
