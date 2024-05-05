@@ -13,3 +13,9 @@ a img{
   width: 20px;
   height: 20px;
 }
+
+
+#photoFrame #photo {
+  width: 100%;
+  
+}

@@ -38,9 +38,9 @@ include('config/config.php');
 
 
 
-<div id="photoFrame"></div>
+<div id="photoFrame">
 <img id="photo" src="" alt="no image loaded">
-
+</div>
 
 
 <script>
