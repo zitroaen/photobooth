@@ -9,17 +9,17 @@ a {
 
 body {
   background-size: 100%;
+  font-weight: 33;
 }
 
 
 /*########### Logo #############*/
 .logo {
-  width: 100px;
-  height: 100px;
-  background: red;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  border-radius: 50px;
+  width: 120px;
+  height: 120px;
+  -moz-border-radius: 60px;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
 
   position: fixed;
   left: 50%;
@@ -43,7 +43,7 @@ body {
 
 /*########### Content #############*/
 
-.content{
+.content {
   width: 500px;
   /*height: 309px;*/
   border-radius: 10px;
@@ -51,13 +51,13 @@ body {
   align-items: center;
   flex-direction: column;
 
-  position: absolute; 
-  bottom:30px; 
-  right:30px;
-  
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
 
-  
- /* Glass Stuff */ 
+
+
+  /* Glass Stuff */
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.15);
   backdrop-filter: blur(5.5px);
@@ -65,14 +65,14 @@ body {
 }
 
 
-.buttonWrapper{
+.buttonWrapper {
   width: 100%;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: center;
 }
 
-.buttonWrapper a{
+.buttonWrapper a {
   margin: 50px;
   width: 120px;
   height: 120px;
@@ -85,7 +85,7 @@ body {
   outline-color: white;
   outline-width: 2px;
 
-  /* Glass Stuff */ 
+  /* Glass Stuff */
   background: linear-gradient(to bottom right, rgba(143, 143, 143, 0.05), rgba(255, 255, 255, 0.55));
   box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.15);
   backdrop-filter: blur(5.5px);
@@ -93,12 +93,112 @@ body {
 
 }
 
-.buttonWrapper a img{
+.buttonWrapper a img {
   width: 70%;
   width: 70%;
 }
 
 
-.buttonWrapper a .label{
+.buttonWrapper a .label {
   display: none;
+}
+
+
+
+/*################Modals#################*/
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-frame {
+  /* background-color: #fefefe;*/
+  margin: auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  /*  border: 1px solid #888;*/
+  width: 90%;
+  /* Could be more or less, depending on screen size */
+  height: 90%;
+  /* color: black;*/
+
+  /* Glass Stuff */
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+
+/*# Photo Modal######*/
+#countdownTimer {
+  font-size: 300px;
+  text-align: center;
+  margin: auto;
+  vertical-align: middle;
+
+
+  text-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+  animation: pulse-white 1s infinite;
+
+}
+
+@keyframes pulse-white {
+  0% {
+    transform: scale(0.95);
+    text-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    text-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    filter: blur(0);
+  }
+
+  100% {
+    transform: scale(0.1);
+    text-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    filter: blur(100px);
+  }
 }

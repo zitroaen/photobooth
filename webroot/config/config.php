@@ -13,7 +13,7 @@ $phpStyle = 'styles/phpStyle.php';
 
 #Texts
 $title = 'websiteTitlePhotobox';
-$headline = 'Übeschrift';
+$headline = 'Überschrift';
 $subHeadline = 'Name & Name';
 $fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
 
@@ -39,7 +39,7 @@ $startPhotoCountdown = 13; #Keycode for starting the Photo Countdown (13=Enter)
 
 #Take Photo
 $countdownTime = 3; #Time in seconds for the countdown
-$displayTime = 5; #How long the picture should be showed after taking it
+$displayTime = 500; #How long the picture should be showed after taking it
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
     #Using Windows

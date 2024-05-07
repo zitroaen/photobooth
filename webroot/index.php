@@ -30,7 +30,13 @@ include ('config/config.php');
 
     </div>
 
-    <div id="photoFrame">
+    <div id="photoFrame" class="modal">
+        <div class="modal-frame">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                
+            </div>
+        </div>
     </div>
 
 </body>
