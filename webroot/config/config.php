@@ -38,7 +38,7 @@ $startPhotoCountdown = 13; #Keycode for starting the Photo Countdown (13=Enter)
 #############################################################
 
 #Take Photo
-$countdownTime = 3; #Time in seconds for the countdown
+$countdownTime = 300; #Time in seconds for the countdown
 $displayTime = 5; #How long the picture should be showed after taking it
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes

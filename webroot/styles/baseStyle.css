@@ -132,12 +132,14 @@ body {
   /* background-color: #fefefe;*/
   margin: auto;
   /* 15% from the top and centered */
-  padding: 20px;
+  padding: 0px;
   /*  border: 1px solid #888;*/
   width: 90%;
   /* Could be more or less, depending on screen size */
   height: 90%;
-  /* color: black;*/
+  overflow: hidden;
+
+
 
   /* Glass Stuff */
   background: rgba(255, 255, 255, 0.25);
@@ -152,6 +154,7 @@ body {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  padding-right: 20px;
 }
 
 .close:hover,
@@ -162,21 +165,31 @@ body {
 }
 
 
-
 .modal-content {
+  margin:20px;
+  margin-top: 40px;
+  }
+
+
+
+/*# Photo Modal######*/
+
+#photoFrame .modal-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  overflow: auto;
+  /* Enable scroll if needed */
 }
 
-.modal-content img{
+#photoFrame .modal-content img{
   max-width: 100%;
   max-height: 100%;
 }
 
 
-/*# Photo Modal######*/
+
 #countdownTimer {
   font-size: 300px;
   text-align: center;
@@ -206,4 +219,40 @@ body {
     text-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     filter: blur(100px);
   }
+}
+
+
+
+
+/*# Gallery Modal######*/
+
+#galleryFrame .modal-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  height: 100%;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  /* Enable scroll if needed */
+  
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+#galleryFrame .modal-content img{
+  height: 200px;
+  transition: all 0.5s;
+  
+}
+
+
+.zoomed {
+  
+  height: 620px !important;
 }

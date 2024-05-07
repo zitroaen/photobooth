@@ -23,8 +23,8 @@ include ('config/config.php');
         <h2><?php echo $subHeadline; ?></h2>
 
         <div class="buttonWrapper">
-            <?php include 'plugins/takePhoto.php' ?>
-            <?php include 'plugins/gallery.php' ?>
+            <?php include 'plugins/photo.php' ?>
+            <?php include 'plugins/gallery.php' ?> 
         </div>
 
 
@@ -34,10 +34,23 @@ include ('config/config.php');
         <div class="modal-frame">
             <span class="close">&times;</span>
             <div class="modal-content">
-                
+
             </div>
         </div>
     </div>
+
+
+
+    <div id="galleryFrame" class="modal">
+        <div class="modal-frame">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+
 
 </body>
 
