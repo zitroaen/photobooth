@@ -52,7 +52,7 @@
         var galleryFrame = document.getElementById("galleryFrame").getElementsByClassName('modal-frame')[0].getElementsByClassName('modal-content')[0];
 
 
-        function loadGalleryImages(){
+        function loadGalleryImages() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -60,7 +60,8 @@
                     console.log(response);
                     response.data.forEach(element => {
                         const pic = document.createElement("img"); //append a img element that will contain the picture 
-                        pic.src =element.filepath;
+                        pic.src = element.filepath;
+                        pic.classList.add("zoomable");
                         galleryFrame.appendChild(pic);
                     });
 
@@ -78,10 +79,12 @@
 
 
 
-            // When the user clicks on an image
-            window.addEventListener('click', function (event) {
-                const target = event.target;
-                target.classList.toggle('zoomed');
-        });
+    // When the user clicks on an image
+    window.addEventListener('click', function (event) {
+        if (event.target.classList.contains("zoomable")) {
+            const target = event.target;
+            target.classList.toggle('zoomed');
+        }
+    });
 
 </script>
