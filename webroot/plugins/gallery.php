@@ -1,6 +1,6 @@
 <a class='button' href="plugins/gallery.php">
 <img src="<?php echo $galleryButtonImage; ?>" alt="">
-<div id="galleryButton" class="nav">
+<p class="label">
 <?php echo $galleryButtonText; ?>
 </div>
 

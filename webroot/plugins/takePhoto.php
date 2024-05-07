@@ -4,9 +4,9 @@
 
 <a class='button' href="#" onclick="startPictureCountdown()">
 <img src="<?php echo $photoButtonImage; ?>" alt="">
-<div id="photoButton" class="nav">
+<p class="label">
 <?php echo $photoButtonText; ?>
-</div>
+</p>
 </a>
 
 

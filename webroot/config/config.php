@@ -7,16 +7,19 @@ chdir($_SERVER["DOCUMENT_ROOT"]); #Change to the servers root directory so all r
 
 #Style
 $baseStyle = 'styles/baseStyle.css';
-$customizationStyle = 'styles/defaultCustomStyle.css';
+$phpStyle = 'styles/phpStyle.php';
+
+
 
 #Texts
 $title = 'websiteTitlePhotobox';
 $headline = 'Übeschrift';
 $subHeadline = 'Name & Name';
-$logoHeadline = 'Logo Headline'; # Headline that will be shown below the logo
+$fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+
 
 #Images
-$logoPath = 'resources/img/Logo.png';
+$logoPath = 'resources/img/Logo.svg';
 $backgroundImage = 'resources/img/background.jpg';
 
 #Buttons
