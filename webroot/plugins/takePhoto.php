@@ -37,8 +37,7 @@
 
         // When the user clicks on the button, open the modal
         btn.onclick = function () {
-            modal.style.display = "flex";
-            content.style.display = "none";
+
             startPictureCountdown();
         }
 
@@ -55,75 +54,77 @@
         }
 
 
-    function closePhotoModal() {
-        modal.style.display = "none";
-        content.style.display = contentDisplay;
-    }
-
-
-
-    var photoFrame = document.getElementById("photoFrame").getElementsByClassName('modal-frame')[0].getElementsByClassName('modal-content')[0];
-
-
-function startPictureCountdown() {
-        var countdownTime = <?php echo $countdownTime; ?>; //store countdown time in variable
-        
-       // photoFrame.style.display = "block";
-        const para = document.createElement("p"); //append a p element that will contain the countdown status
-        para.id = 'countdownTimer'          //Set the ID so the text can be set via Javascript
-        photoFrame.appendChild(para);
-        document.getElementById("countdownTimer").textContent = countdownTime; //Set Text to current time
-        const countdown = setInterval(() => {
-            countdownTime--;
-            document.getElementById("countdownTimer").textContent = countdownTime; //Set Text to current time
-            if (countdownTime <= 0) {
-                clearInterval(countdown);
-                para.remove(); //Remove paragraph displaying the countdown from DOM
-                takePicture();
-            }
-
-        }, 1000);
-    }
-
-
-    function takePicture() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                response = JSON.parse(this.responseText)
-                console.log(response);
-
-               
-
-                const pic = document.createElement("img"); //append a img element that will contain the picture 
-                pic.alt = 'Well shit - something went wrong'
-                pic.id = 'photo'          //Set the ID so the text can be set via Javascript
-                photoFrame.appendChild(pic);
-                document.getElementById("photo").src = response.path + response.fileName;
-                var displayTime = <?php echo $displayTime; ?>;
-                const countdown2 = setInterval(() => {
-                    displayTime--;
-                    if (displayTime <= 0) {
-                        clearInterval(countdown2);
-                        closePhotoModal();
-                    }
-
-                }, 1000);
-
-
-
-
-            }
-        };
-        xhttp.open("GET", "takePhoto.php", true);
-        xhttp.send();
-    }
-
-    document.addEventListener("keyup", (evt) => {
-        if (evt.keyCode === <?php echo $startPhotoCountdown; ?>) {
-            startPictureCountdown();
+        function closePhotoModal() {
+            modal.style.display = "none";
+            content.style.display = contentDisplay;
         }
-    });
+
+
+
+        var photoFrame = document.getElementById("photoFrame").getElementsByClassName('modal-frame')[0].getElementsByClassName('modal-content')[0];
+
+
+        function startPictureCountdown() {
+            modal.style.display = "flex";
+            content.style.display = "none";
+            var countdownTime = <?php echo $countdownTime; ?>; //store countdown time in variable
+
+            // photoFrame.style.display = "block";
+            const para = document.createElement("p"); //append a p element that will contain the countdown status
+            para.id = 'countdownTimer'          //Set the ID so the text can be set via Javascript
+            photoFrame.appendChild(para);
+            document.getElementById("countdownTimer").textContent = countdownTime; //Set Text to current time
+            const countdown = setInterval(() => {
+                countdownTime--;
+                document.getElementById("countdownTimer").textContent = countdownTime; //Set Text to current time
+                if (countdownTime <= 0) {
+                    clearInterval(countdown);
+                    para.remove(); //Remove paragraph displaying the countdown from DOM
+                    takePicture();
+                }
+
+            }, 1000);
+        }
+
+
+        function takePicture() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    response = JSON.parse(this.responseText)
+                    console.log(response);
+
+
+
+                    const pic = document.createElement("img"); //append a img element that will contain the picture 
+                    pic.alt = 'Well shit - something went wrong'
+                    pic.id = 'photo'          //Set the ID so the text can be set via Javascript
+                    photoFrame.appendChild(pic);
+                    document.getElementById("photo").src = response.path + response.fileName;
+                    var displayTime = <?php echo $displayTime; ?>;
+                    const countdown2 = setInterval(() => {
+                        displayTime--;
+                        if (displayTime <= 0) {
+                            clearInterval(countdown2);
+                            closePhotoModal();
+                        }
+
+                    }, 1000);
+
+
+
+
+                }
+            };
+            xhttp.open("GET", "takePhoto.php", true);
+            xhttp.send();
+        }
+
+        document.addEventListener("keyup", (evt) => {
+            if (evt.keyCode === <?php echo $startPhotoCountdown; ?>) {
+                startPictureCountdown();
+            }
+        });
 
 
 
@@ -140,7 +141,7 @@ function startPictureCountdown() {
 
 
 
-    
+
 
 
 </script>
