@@ -70,6 +70,7 @@
 
         function startPictureCountdown() {
             if (!countdownRunning) {
+                photoFrame.innerHTML = '';
                 countdownRunning = true;
                 photoModal.style.display = "flex";
                 content.style.display = "none";
