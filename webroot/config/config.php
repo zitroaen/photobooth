@@ -1,4 +1,9 @@
-<?php 
+<?php
+# No toucy!#############
+$prevCwd = getcwd();
+chdir($_SERVER["DOCUMENT_ROOT"]); #Change to the servers root directory so all relations work, regardless from where they were called
+
+
 
 #Style
 $baseStyle = 'styles/baseStyle.css';
@@ -6,17 +11,19 @@ $customizationStyle = 'styles/defaultCustomStyle.css';
 
 #Texts
 $title = 'websiteTitlePhotobox';
-$headline = 'headline';
-$subHeadline = 'subHeadline';
+$headline = 'Übeschrift';
+$subHeadline = 'Name & Name';
+$logoHeadline = 'Logo Headline'; # Headline that will be shown below the logo
 
-#Logo
+#Images
 $logoPath = 'resources/img/Logo.png';
+$backgroundImage = 'resources/img/background.jpg';
 
 #Buttons
-$galleryButtonText = "gallery";
+$galleryButtonText = "Galerie";
 $galleryButtonImage = "resources/img/galleryButtonImage.svg";
 
-$photoButtonText = "Käse!";
+$photoButtonText = "Foto";
 $photoButtonImage = "resources/img/photoButtonImage.svg";
 
 
@@ -29,6 +36,7 @@ $startPhotoCountdown = 13; #Keycode for starting the Photo Countdown (13=Enter)
 
 #Take Photo
 $countdownTime = 3; #Time in seconds for the countdown
+$displayTime = 5; #How long the picture should be showed after taking it
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
     #Using Windows
@@ -53,5 +61,5 @@ $jqueryPath = 'resources/js/jquery-3.7.1.min.js'; #Path to jquery
 
 
 
-
+chdir($prevCwd);
 ?>

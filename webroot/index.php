@@ -1,6 +1,6 @@
 <?php
 #Load Settings
-include('config/config.php');
+include ('config/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,89 +14,24 @@ include('config/config.php');
 </head>
 
 <body>
-<?php include 'logo.php'?>
+    <?php include 'plugins/logo.php' ?>
+
+    <div class="content">
+
+        <h1><?php echo $headline; ?></h1>
+        <h2><?php echo $subHeadline; ?></h2>
+
+        <div class="buttonwrapper">
+            <?php include 'plugins/takePhoto.php' ?>
+            <?php include 'plugins/gallery.php' ?>
+        </div>
 
 
-<h1><?php echo $headline; ?></h1>
-<h2><?php echo $subHeadline; ?></h2>
+    </div>
 
-
-
-<a href="gallery.php">
-  <div id="galleryButton" class="nav">
-    <?php echo $galleryButtonText; ?>
-  </div>
-  <img src="<?php echo $galleryButtonImage; ?>" alt="">
-</a>
-
-<a href="#" onclick="startPictureCountdown()">
-  <div id="photoButton" class="nav">
-    <?php echo $photoButtonText; ?>
-  </div>
-  <img src="<?php echo $photoButtonImage; ?>" alt="">
-</a>
-
-
-
-<div id="photoFrame">
-</div>
-
-
-<script>
-
-
-
-function startPictureCountdown() {
-    var countdownTime = <?php echo $countdownTime; ?>; //store countdown time in variable
-    var photoFrame = document.getElementById("photoFrame"); 
-    const para = document.createElement("p"); //append a p element that will contain the countdown status
-    para.id = 'countdownTimer'          //Set the ID so the text can be set via Javascript
-    photoFrame.appendChild(para);
-    document.getElementById("countdownTimer").textContent = countdownTime; //Set Text to current time
-    const countdown = setInterval(() => {
-                countdownTime--;
-                document.getElementById("countdownTimer").textContent = countdownTime; //Set Text to current time
-                if (countdownTime<=0){
-            clearInterval(countdown);
-            para.remove(); //Remove paragraph displaying the countdown from DOM
-            takePicture();    
-        }
-        
-    }, 1000);
-}
-
-
-    function takePicture() {
-      var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-    // document.getElementById("demo").innerHTML = this.responseText;
-    response = JSON.parse(this.responseText)
-    console.log(response);
-
-    var photoFrame = document.getElementById("photoFrame"); 
-    const pic = document.createElement("img"); //append a img element that will contain the picture 
-    pic.alt = 'Well shit - something went wrong' 
-    pic.id = 'photo'          //Set the ID so the text can be set via Javascript
-    photoFrame.appendChild(pic);
-    document.getElementById("photo").src=response.path + response.fileName;
-    }
-  };
-  xhttp.open("GET", "takePhoto.php", true);
-  xhttp.send();
-}
-
-document.addEventListener ("keyup", (evt) => {
-	if (evt.keyCode === <?php echo $startPhotoCountdown; ?>) {
-        startPictureCountdown();
-	}
-});
-
-
-</script>
-
+    <div id="photoFrame">
+    </div>
 
 </body>
+
 </html>
-
-
