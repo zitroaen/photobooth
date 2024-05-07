@@ -166,8 +166,7 @@ body {
 
 
 .modal-content {
-  margin:20px;
-  margin-top: 40px;
+  margin:auto;
   }
 
 
@@ -238,6 +237,7 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
   /* Enable scroll if needed */
+  margin:auto;
   
 }
 
