@@ -7,6 +7,10 @@ a {
   color: inherit;
 }
 
+h2{
+  margin-bottom: 50px;
+}
+
 body {
   background-size: 100%;
   font-weight: 33;
@@ -96,8 +100,8 @@ body {
 }
 
 .buttonWrapper a img {
-  width: 70%;
-  width: 70%;
+  width: 50%;
+
 }
 
 
