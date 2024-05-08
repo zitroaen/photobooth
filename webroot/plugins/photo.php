@@ -37,7 +37,6 @@
 
         // When the user clicks on the button, open the modal
         photoBtn.onclick = function () {
-            console.log("photo click");
             startPictureCountdown();
         }
 
@@ -95,8 +94,8 @@
         }
 
         function takePicture() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
+            var photoHttp = new XMLHttpRequest();
+            photoHttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     response = JSON.parse(this.responseText)
                     //console.log(response);
@@ -114,14 +113,10 @@
                         }
 
                     }, 1000);
-
-
-
-
                 }
             };
-            xhttp.open("GET", "takePhoto.php", true);
-            xhttp.send();
+            photoHttp.open("GET", "takePhoto.php", true);
+            photoHttp.send();
         }
 
         document.addEventListener("keyup", (evt) => {
