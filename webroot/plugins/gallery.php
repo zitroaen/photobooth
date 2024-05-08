@@ -21,7 +21,6 @@
 
         // When the user clicks on the button, open the modal
         galleryBtn.onclick = function () {
-            console.log("gallery click");
             openGalleryModal();
         }
 
@@ -58,12 +57,15 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     response = JSON.parse(this.responseText)
-                    console.log(response);
                     response.data.forEach(element => {
+                        const photoDiv = document.createElement("div");
+                        photoDiv.classList.add("photoWrapper");
                         const pic = document.createElement("img"); //append a img element that will contain the picture 
                         pic.src = element.filepath;
                         pic.classList.add("zoomable");
-                        galleryFrame.appendChild(pic);
+                        photoDiv.appendChild(pic);
+                        galleryFrame.appendChild(photoDiv);
+                        addPrintButton(photoDiv, element.fileName)
                     });
 
 
@@ -79,12 +81,58 @@
 
 
 
+    function addPrintButton(parentElement, targetFile) {
+        const buttonWrapper = document.createElement('div');
+        buttonWrapper.classList.add("buttonWrapper");
+        const printBtn = document.createElement('a');
+        printBtn.href = "#";
+        printBtn.classList.add("printButton");
+        printBtn.setAttribute('data-path', targetFile);
+        const printLabel = document.createElement("p");
+        printLabel.classList.add("label");
+        printLabel.appendChild(document.createTextNode("<?php echo $printButtonText ?>"));
+        const printLogo = document.createElement("img");
+        printLogo.src = "<?php echo $printButtonImage ?>";
+        printBtn.appendChild(printLogo);
+        printBtn.appendChild(printLabel);
+        buttonWrapper.appendChild(printBtn);
+        parentElement.appendChild(buttonWrapper);
+    }
+
+
+    // When the user clicks on a print button
+    window.addEventListener('click', function (event) {
+        if (event.target.parentElement.classList.contains("printButton")) {
+            console.log("print clicked");
+            var reqUrl = "print.php?fileName=" + event.target.parentElement.getAttribute('data-path');
+          //  reqUrl.concat(event.target.parentElement.getAttribute('data-path'));
+            console.log(reqUrl);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    response = JSON.parse(this.responseText);
+                    console.log(response);
+                    console.log(event.target.parentElement.getAttribute('data-path'));
+                }
+            };
+            xhttp.open("GET", reqUrl , true);
+            xhttp.send();
+
+
+
+
+        }
+    });
+
+
+
 
     // When the user clicks on an image
     window.addEventListener('click', function (event) {
         if (event.target.classList.contains("zoomable")) {
             const target = event.target;
             target.classList.toggle('zoomed');
+            target.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
         }
     });
 

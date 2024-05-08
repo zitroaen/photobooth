@@ -50,7 +50,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-
+  padding-bottom: 30px;
   position: absolute;
   bottom: 30px;
   right: 30px;
@@ -70,10 +70,12 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 100px;
 }
 
 .buttonWrapper a {
-  margin: 50px;
+  /*margin: 50px;*/
+
   width: 120px;
   height: 120px;
   border-radius: 60px;
@@ -139,7 +141,7 @@ body {
   height: 90%;
   overflow: hidden;
 
-
+  border-radius: 10px;
 
   /* Glass Stuff */
   background: rgba(255, 255, 255, 0.25);
@@ -166,8 +168,9 @@ body {
 
 
 .modal-content {
-  margin:auto;
-  }
+  margin: 30px;
+  height: 90%;
+}
 
 
 
@@ -177,12 +180,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   overflow: auto;
   /* Enable scroll if needed */
 }
 
-#photoFrame .modal-content img{
+#photoFrame .modal-content img {
   max-width: 100%;
   max-height: 100%;
 }
@@ -232,27 +234,59 @@ body {
   justify-content: center;
   flex-direction: row;
   gap: 10px;
-  height: 100%;
   overflow: auto;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
   /* Enable scroll if needed */
-  margin:auto;
-  
+
 }
 
 .modal-content::-webkit-scrollbar {
   display: none;
 }
 
-#galleryFrame .modal-content img{
+#galleryFrame .modal-content img {
   height: 200px;
-  transition: all 0.5s;
-  
+  /*transition: all 0.5s;*/
+
 }
 
 
 .zoomed {
-  
+
   height: 620px !important;
+}
+
+
+
+/*Print Buttons*/
+.printButton {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+
+
+
+
+.photoWrapper .buttonWrapper {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  /* Glass Stuff */
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+
+}
+
+
+.photoWrapper img {
+  margin: 0;
+  padding: 0;
+  display: block;
 }

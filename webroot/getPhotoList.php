@@ -26,7 +26,7 @@ function Get_ImagesToFolder($dir , $extension)
         foreach ($dir_contents as $file) {
             $file_type = pathinfo($file, PATHINFO_EXTENSION);
             if (in_array($file_type, $file_display) == true) {
-                $ImagesArray[] = ['filepath' => $dir . $file];
+                $ImagesArray[] = ['filepath' => $dir . $file, 'fileName' => $file];
             }
 
         }
