@@ -103,9 +103,9 @@
                     const photoWrapper = document.createElement('div');
                     photoWrapper.classList.add('photoWrapper');
                     photoWrapper.style.backgroundImage = "url('" + response.path + response.fileName+"')";
-                    const pic = document.createElement("img"); //append a img element that will contain the picture 
-                    pic.alt = 'Something went wrong'
-                    pic.id = 'photo'          //Set the ID so the text can be set via Javascript
+                   // const pic = document.createElement("img"); //append a img element that will contain the picture 
+                 //   pic.alt = 'Something went wrong'
+                //    pic.id = 'photo'          //Set the ID so the text can be set via Javascript
                    // photoWrapper.appendChild(pic);
                     photoFrame.appendChild(photoWrapper);
                     addPrintButton(photoFrame, response.fileName);
@@ -113,6 +113,7 @@
                     var displayTime = <?php echo $displayTime; ?>;
                     window.modalCountdown = setInterval(() => {
                         displayTime--;
+                        console.log(displayTime);
                         if (displayTime <= 0) {
                             clearInterval(window.modalCountdown);
                             closePhotoModal();
