@@ -69,6 +69,7 @@
 
         function startPictureCountdown() {
             if (!countdownRunning) {
+                closeGalleryModal();
                 photoFrame.innerHTML = '';
                 countdownRunning = true;
                 photoModal.style.display = "flex";

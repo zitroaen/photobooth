@@ -17,7 +17,7 @@
         var gallerySpan = galleryModal.getElementsByClassName("close")[0];
         //get the content and save display mode that is defined in css so we can go back afterwards
         var content = document.getElementsByClassName("content")[0];
-        var contentDisplay = content.style.display;
+
 
         // When the user clicks on the button, open the modal
         galleryBtn.onclick = function () {
@@ -43,10 +43,7 @@
             loadGalleryImages();
         }
 
-        function closeGalleryModal() {
-            galleryModal.style.display = "none";
-            content.style.display = contentDisplay;
-        }
+
 
         var galleryFrame = document.getElementById("galleryFrame").getElementsByClassName('modal-frame')[0].getElementsByClassName('modal-content')[0];
 
@@ -111,12 +108,12 @@
                         response = JSON.parse(this.responseText);
                         console.log(response);
                         printBtn.classList.remove("loading");
-                        if (response.success==true){ //If everything went well, add success class for 5 seconds
+                        if (response.success == true) { //If everything went well, add success class for 5 seconds
                             printBtn.classList.add("success");
-                            setInterval(function () {printBtn.classList.remove("success");}, 5000);
-                        }else{// if something went wrong, log response and add fail class for 5 seconds
+                            setInterval(function () { printBtn.classList.remove("success"); }, 5000);
+                        } else {// if something went wrong, log response and add fail class for 5 seconds
                             printBtn.classList.add("error");
-                            setInterval(function () {printBtn.classList.remove("error");}, 5000);
+                            setInterval(function () { printBtn.classList.remove("error"); }, 5000);
                             console.log(response);
                         }
                     }
@@ -127,31 +124,6 @@
         });
     }
 
-    /*
-        // When the user clicks on a print button
-        window.addEventListener('click', function (event) {
-            if (event.target.parentElement.classList.contains("printButton")) {
-                console.log("print clicked");
-                var reqUrl = "print.php?fileName=" + event.target.parentElement.getAttribute('data-path');
-              //  reqUrl.concat(event.target.parentElement.getAttribute('data-path'));
-                console.log(reqUrl);
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        response = JSON.parse(this.responseText);
-                        console.log(response);
-                        console.log(event.target.parentElement.getAttribute('data-path'));
-                    }
-                };
-                xhttp.open("GET", reqUrl , true);
-                xhttp.send();
-    
-    
-    
-    
-            }
-        });
-    */
 
 
 
@@ -164,4 +136,12 @@
         }
     });
 
+
+    var content = document.getElementsByClassName("content")[0];
+    var contentDisplay = content.style.display;
+    function closeGalleryModal() {
+        var galleryModal = document.getElementById("galleryFrame");
+        galleryModal.style.display = "none";
+        content.style.display = contentDisplay;
+    }
 </script>

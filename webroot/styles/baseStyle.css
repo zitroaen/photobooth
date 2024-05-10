@@ -7,7 +7,7 @@ a {
   color: inherit;
 }
 
-h2{
+h2 {
   margin-bottom: 50px;
 }
 
@@ -286,7 +286,7 @@ body {
 }
 
 
- .modal-content .buttonWrapper {
+.modal-content .buttonWrapper {
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom-left-radius: 10px;
@@ -303,19 +303,19 @@ body {
   display: block;
 }
 
-#photoFrame .photoWrapper{
+#photoFrame .photoWrapper {
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center; 
+  background-position: center;
   background-size: contain;
 }
 
 
 .loading::after,
 .loading::before {
-  content: '';  
+  content: '';
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -326,6 +326,7 @@ body {
   top: 0;
   animation: animloader 1s linear infinite;
 }
+
 .loading::after {
   animation-delay: 1s;
 }
@@ -336,6 +337,7 @@ body {
     transform: scale(1);
     opacity: 1;
   }
+
   100% {
     outline: 10px solid #FFF;
     transform: scale(1.5);
@@ -346,13 +348,13 @@ body {
 
 
 .error img,
-.success img{
+.success img {
   display: none;
 }
 
-.error{
+.error {
   outline-color: #f86 !important;
-  }
+}
 
 .error::before,
 .error::after {
@@ -379,16 +381,18 @@ body {
   0% {
     width: 0px;
   }
+
   30% {
     width: 100%;
   }
+
   100% {
     width: 80%;
   }
 }
 
 
-.success{
+.success {
   outline-color: rgb(82, 173, 74) !important;
 }
 
@@ -424,10 +428,8 @@ body {
   0% {
     opacity: 0;
   }
-  30% {
 
-  }
-  100% {
-    
-  }
+  30% {}
+
+  100% {}
 }
