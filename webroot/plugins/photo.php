@@ -69,7 +69,8 @@
 
         function startPictureCountdown() {
             if (!countdownRunning) {
-                closeGalleryModal();
+                closeGalleryModal(); //close gallery if someone still had it open
+                clearInterval(window.modalCountdown); //Do not close this modal in case the automatic countdown has already been started from the previous photo
                 photoFrame.innerHTML = '';
                 countdownRunning = true;
                 photoModal.style.display = "flex";
@@ -111,6 +112,7 @@
                     addPrintButton(photoFrame, response.fileName);
                    // document.getElementById("photo").src = response.path + response.fileName;
                     var displayTime = <?php echo $displayTime; ?>;
+                    countdownRunning = false;
                     window.modalCountdown = setInterval(() => {
                         displayTime--;
                         if (displayTime <= 0) {

@@ -99,14 +99,14 @@
             if (!printBtn.classList.contains("loading")) { //Only execute if it's not already running
                 printBtn.classList.remove("error");
                 printBtn.classList.remove("success");
-                console.log(printBtn);
+                
                 printBtn.classList.add("loading");
                 var reqUrl = "print.php?fileName=" + targetFile;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         response = JSON.parse(this.responseText);
-                        console.log(response);
+                        
                         printBtn.classList.remove("loading");
                         if (response.success == true) { //If everything went well, add success class for 5 seconds
                             printBtn.classList.add("success");
