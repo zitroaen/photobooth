@@ -10,12 +10,12 @@ $frame = $framePath;
 
 
 $response = ['success' => false, 'error' => ''];
-if (!isset($_GET["fileName"]) OR empty($_GET["fileName"])) {
+if (!isset($_GET["fileName"]) or empty($_GET["fileName"])) {
     header('Content-Type: application/json; charset=utf-8');
-    $response['error']= 'No target specified';
+    $response['error'] = 'No target specified';
     echo json_encode($response);
     exit;
-}else {
+} else {
     $fileName = htmlspecialchars($_GET["fileName"]);
 }
 
@@ -95,17 +95,16 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
     }
 
     imagejpeg($resizedDest, $dir . $fileName, 100);
-    
+
 
     //check whether file has been created successfully
-    if (file_exists($dir . $fileName)){
-         $response['success'] = true;
-         $response['path'] = $dir . $fileName;
+    if (file_exists($dir . $fileName)) {
+        $response['path'] = $dir . $fileName;
     } else {
         $response['success'] = false;
         $response['error'] = 'Prepared Photo could not be created in the filesystem';
     }
-   
+
 
 } else {
     //files dont exist
@@ -121,6 +120,22 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
         $response['selectedPhoto'] = $sourcePhotoPath;
         $response['selectedFrame'] = $framePath;
     }
+}
+
+
+// print image
+
+if (file_exists($dir . $fileName)) {
+    chdir($dir);
+    $cmd = sprintf($printCommand, $fileName);
+    $cmd .= ' 2>&1';
+    exec($cmd, $output, $returnValue);
+    $response['printingResponse'] = $output;
+    $response['printingReturnValue'] = $returnValue;
+    $response['success'] = true;
+} else {
+    $response['success'] = false;
+    $response['error'] = 'Photo could not be found for print command';
 }
 
 
