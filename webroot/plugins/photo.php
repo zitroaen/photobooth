@@ -99,11 +99,16 @@
                 if (this.readyState == 4 && this.status == 200) {
                     response = JSON.parse(this.responseText)
                     //console.log(response);
+                    const photoWrapper = document.createElement('div');
+                    photoWrapper.classList.add('photoWrapper');
+                    photoWrapper.style.backgroundImage = "url('" + response.path + response.fileName+"')";
                     const pic = document.createElement("img"); //append a img element that will contain the picture 
                     pic.alt = 'Something went wrong'
                     pic.id = 'photo'          //Set the ID so the text can be set via Javascript
-                    photoFrame.appendChild(pic);
-                    document.getElementById("photo").src = response.path + response.fileName;
+                   // photoWrapper.appendChild(pic);
+                    photoFrame.appendChild(photoWrapper);
+                    addPrintButton(photoFrame, response.fileName);
+                   // document.getElementById("photo").src = response.path + response.fileName;
                     var displayTime = <?php echo $displayTime; ?>;
                     window.modalCountdown = setInterval(() => {
                         displayTime--;

@@ -43,11 +43,11 @@ $startPhotoCountdown = 13; #Keycode for starting the Photo Countdown (13=Enter)
 
 #Take Photo
 $countdownTime = 3; #Time in seconds for the countdown
-$displayTime = 5; #How long the picture should be showed after taking it
+$displayTime = 500; #How long the picture should be showed after taking it
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
     #Using Windows
-    $takePhotoCommand = 'echo %s'; #%s is the placeholder for the filename that the script will automatically genrate 
+    $takePhotoCommand = 'copy pic.jpg %s'; #%s is the placeholder for the filename that the script will automatically genrate 
 } else {
     #Not using windows 
     $takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
