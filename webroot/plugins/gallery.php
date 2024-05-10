@@ -87,7 +87,7 @@
         const printBtn = document.createElement('a');
         printBtn.href = "#";
         printBtn.classList.add("printButton");
-        printBtn.setAttribute('data-path', targetFile);
+
         const printLabel = document.createElement("p");
         printLabel.classList.add("label");
         printLabel.appendChild(document.createTextNode("<?php echo $printButtonText ?>"));
@@ -97,33 +97,61 @@
         printBtn.appendChild(printLabel);
         buttonWrapper.appendChild(printBtn);
         parentElement.appendChild(buttonWrapper);
+
+        printBtn.addEventListener("click", function () {
+            if (!printBtn.classList.contains("loading")) { //Only execute if it's not already running
+                printBtn.classList.remove("error");
+                printBtn.classList.remove("success");
+                console.log(printBtn);
+                printBtn.classList.add("loading");
+                var reqUrl = "print.php?fileName=" + targetFile;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        response = JSON.parse(this.responseText);
+                        console.log(response);
+                        printBtn.classList.remove("loading");
+                        if (response.success==true){ //If everything went well, add success class for 5 seconds
+                            printBtn.classList.add("success");
+                            setInterval(function () {printBtn.classList.remove("success");}, 5000);
+                        }else{// if something went wrong, log response and add fail class for 5 seconds
+                            printBtn.classList.add("error");
+                            setInterval(function () {printBtn.classList.remove("error");}, 5000);
+                            console.log(response);
+                        }
+                    }
+                };
+                xhttp.open("GET", reqUrl, true);
+                xhttp.send();
+            }
+        });
     }
 
-
-    // When the user clicks on a print button
-    window.addEventListener('click', function (event) {
-        if (event.target.parentElement.classList.contains("printButton")) {
-            console.log("print clicked");
-            var reqUrl = "print.php?fileName=" + event.target.parentElement.getAttribute('data-path');
-          //  reqUrl.concat(event.target.parentElement.getAttribute('data-path'));
-            console.log(reqUrl);
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    response = JSON.parse(this.responseText);
-                    console.log(response);
-                    console.log(event.target.parentElement.getAttribute('data-path'));
-                }
-            };
-            xhttp.open("GET", reqUrl , true);
-            xhttp.send();
-
-
-
-
-        }
-    });
-
+    /*
+        // When the user clicks on a print button
+        window.addEventListener('click', function (event) {
+            if (event.target.parentElement.classList.contains("printButton")) {
+                console.log("print clicked");
+                var reqUrl = "print.php?fileName=" + event.target.parentElement.getAttribute('data-path');
+              //  reqUrl.concat(event.target.parentElement.getAttribute('data-path'));
+                console.log(reqUrl);
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        response = JSON.parse(this.responseText);
+                        console.log(response);
+                        console.log(event.target.parentElement.getAttribute('data-path'));
+                    }
+                };
+                xhttp.open("GET", reqUrl , true);
+                xhttp.send();
+    
+    
+    
+    
+            }
+        });
+    */
 
 
 

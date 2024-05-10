@@ -10,7 +10,9 @@ include('config/config.php');
 $fileName = date('mdY_His', time()) . "." .$fileExtension; 
 $command = sprintf($takePhotoCommand, $fileName);
 
-
+if (!file_exists($photoPath)) {
+    mkdir($photoPath, 0777, true);
+}
 #Take Photo#####################
 $output=null;
 $retval=null;

@@ -95,7 +95,9 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
     }
 
     imagejpeg($resizedDest, $dir . $fileName, 100);
-
+    imagedestroy($resizedDest);
+    imagedestroy($dest);
+    imagedestroy($src);
 
     //check whether file has been created successfully
     if (file_exists($dir . $fileName)) {
@@ -103,6 +105,20 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
     } else {
         $response['success'] = false;
         $response['error'] = 'Prepared Photo could not be created in the filesystem';
+    }
+    // print image
+
+    if (file_exists($dir . $fileName)) {
+        chdir($dir);
+        $cmd = sprintf($printCommand, $fileName);
+        $cmd .= ' 2>&1';
+        exec($cmd, $output, $returnValue);
+        $response['printingResponse'] = $output;
+        $response['printingReturnValue'] = $returnValue;
+        $response['success'] = true;
+    } else {
+        $response['success'] = false;
+        $response['error'] = 'Photo could not be found for print command';
     }
 
 
@@ -123,20 +139,6 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
 }
 
 
-// print image
-
-if (file_exists($dir . $fileName)) {
-    chdir($dir);
-    $cmd = sprintf($printCommand, $fileName);
-    $cmd .= ' 2>&1';
-    exec($cmd, $output, $returnValue);
-    $response['printingResponse'] = $output;
-    $response['printingReturnValue'] = $returnValue;
-    $response['success'] = true;
-} else {
-    $response['success'] = false;
-    $response['error'] = 'Photo could not be found for print command';
-}
 
 
 
@@ -148,9 +150,7 @@ if (file_exists($dir . $fileName)) {
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($response);
 //free Memory
-imagedestroy($resizedDest);
-imagedestroy($dest);
-imagedestroy($src);
+
 
 
 

@@ -73,7 +73,7 @@ $printTargetWidth = 6000; #width of the document to be printed
 $printTargetHeight = 4000; #height of the document to be printed
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
     #Using Windows
-    $printCommand = 'mspaint /pt %s'; #%s is the placeholder for the filename
+    $printCommand = 'echo this command is in for testing mspaint /pt %s'; #%s is the placeholder for the filename
 } else {
     #Not using windows 
     $printCommand = 'lp -o landscape -o fit-to-page %s'; #%s is the placeholder for the filename
