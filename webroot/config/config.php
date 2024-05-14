@@ -26,7 +26,7 @@ $printButtonImage = "resources/img/printButtonImage.svg";
 
 #Images
 $logoPath = 'resources/img/Logo.svg';
-$backgroundImage = 'resources/img/background.jpg';
+$backgroundImage = 'resources/img/background1.jpg';
 
 ##########Photos
 $framePath = 'resources/frames/frame.png';
@@ -43,20 +43,23 @@ $startPhotoCountdown = 13; #Keycode for starting the Photo Countdown (13=Enter)
 
 #Take Photo
 $countdownTime = 3; #Time in seconds for the countdown
-$displayTime = 5; #How long the picture should be showed after taking it
-
-if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
-    #Using Windows
-    $takePhotoCommand = 'copy pic.jpg %s'; #%s is the placeholder for the filename that the script will automatically genrate 
-} else {
-    #Not using windows 
-    $takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
-}
+$displayTime = 10; #How long the picture should be showed after taking it
 
 #
 date_default_timezone_set('Europe/Berlin'); # Timezone for the picture filename
 $photoPath = 'resources/photos/original/';  #Path where photos should be stored. Must end in a "/"
 $fileExtension = 'jpg';
+
+
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testing purposes
+    #Using Windows
+    $takePhotoCommand = '"C:\Program Files (x86)\digiCamControl\CameraControlCmd.exe" /capture /filename ' . realpath($photoPath) . '\%s'; #%s is the placeholder for the filename that the script will automatically genrate 
+} else {
+    #Not using windows 
+    $takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
+}
+
+
 
 #gallery
 $nanogallery2Path = 'resources/js/nanogallery2/jquery.nanogallery2.core.js'; # path to the nanogallery2 installation

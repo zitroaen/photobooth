@@ -18,7 +18,7 @@ $output=null;
 $retval=null;
     if (chdir(realpath($photoPath))){
        exec($command , $output, $retval); #execute the "take Photo" command
-       $data = ['returnValue'=> $retval,'output' => $output, 'path' => $photoPath, 'fileName' => $fileName ];  #construct the response
+       $data = ['returnValue'=> $retval,'output' => $output, 'path' => $photoPath, 'fileName' => $fileName , 'command' => $command];  #construct the response
 
         if ($retval!=0){ #something went wrong!a
             $data = ['returnValue'=> $retval, 'output' => $output];  #construct the response

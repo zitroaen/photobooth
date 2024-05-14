@@ -1,0 +1,4 @@
+
+background1.jpg
+# Except this file
+!.gitignore
