@@ -115,6 +115,11 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
         exec($cmd, $output, $returnValue);
         $response['printingResponse'] = $output;
         $response['printingReturnValue'] = $returnValue;
+        if (§output==0){
+            $response['success'] = true;
+        }else {
+            $response['success'] = false;
+        }
         $response['success'] = true;
     } else {
         $response['success'] = false;
