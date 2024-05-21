@@ -163,12 +163,8 @@ function general_setup() {
 function start_install() {
     info "### Now we are going to install Photobooth."
     cd /var/www/
-    sudo -u www-data git clone https://github.com/zitroaen/photobooth "$INSTALLFOLDER"
-    cd "$INSTALLFOLDER"
-    sudo mv "$INSTALLFOLDER"/webroot/* html
-    
-    
-    
+    sudo -u www-data git clone https://github.com/zitroaen/photobooth photobooth
+    sudo mv photobooth/webroot/* html      
 }
 
 function detect_browser() {
