@@ -154,7 +154,7 @@ function general_setup() {
     chown www-data:www-data "$INSTALLFOLDERPATH"
     chown www-data:www-data /var/www
     
-    PHOTOBOOTH_LOG="$INSTALLFOLDERPATH/private/install.log"
+  #  PHOTOBOOTH_LOG="$INSTALLFOLDERPATH/private/install.log"
 }
 
 
@@ -296,7 +296,7 @@ function ask_usb_sync() {
 function general_permissions() {
     info "### Setting permissions."
     chown -R www-data:www-data "$INSTALLFOLDERPATH"/
-    chmod g+s "$INSTALLFOLDERPATH/private"
+   # chmod g+s "$INSTALLFOLDERPATH/private"
     gpasswd -a www-data plugdev
     gpasswd -a www-data video
     gpasswd -a "$USERNAME" www-data
@@ -532,7 +532,7 @@ fi
 info "###"
 info "### Have fun with your Photobooth, but first restart your device!"
 
-cat "$PHOTOBOOTH_TMP_LOG" >>"$PHOTOBOOTH_LOG" || warn "WARN: failed to add log to ${PHOTOBOOTH_LOG}"
+#cat "$PHOTOBOOTH_TMP_LOG" >>"$PHOTOBOOTH_LOG" || warn "WARN: failed to add log to ${PHOTOBOOTH_LOG}"
 
 echo -e "\033[0;33m"
 ask_yes_no "### Do you like to reboot now? [y/N] " "N"
