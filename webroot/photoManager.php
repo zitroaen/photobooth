@@ -68,9 +68,11 @@ function initDb()
 
 
 
-function addAllPictures($dir, $extension)
+function addAllPictures($dir, $extension, $generateThumbnails=true)
 {
     $db = $GLOBALS['db'];
+    $thumbnailWidth = $GLOBALS['thumbnailWidth'];
+    $thumbnailPath = $GLOBALS['thumbnailPath'];
     $file_display = [$extension];
     if (file_exists($dir) == false) { #check if the directory exists
     } else {
@@ -87,6 +89,12 @@ function addAllPictures($dir, $extension)
             if (in_array($file_type, $file_display) == true) {
                 if (addPhotoEntry($dir . $file) == false) {
                     return false;
+                }else{
+                    if ($generateThumbnails == true) {
+                        $photoId = $db->lastInsertRowID(); #Get the ID of the picture that was just inserted
+                        ###Now trigger all Jobs to generate stuff
+                        generateThumbnail($photoId, $thumbnailWidth, $thumbnailPath);
+                    }
                 }
 
             }
@@ -136,6 +144,7 @@ function addPhotoEntry($photoEntry)
     }
     return true;
 }
+
 
 
 function idExists($id)

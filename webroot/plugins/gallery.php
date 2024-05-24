@@ -136,7 +136,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     response = JSON.parse(this.responseText)
-                   // console.log(response);
+                    // console.log(response);
                     response.data.forEach(element => {
                         const photoAElement = document.createElement("a");
                         photoAElement.setAttribute('data-pswp-src', element.filepath);
@@ -256,6 +256,9 @@
     var content = document.getElementsByClassName("content")[0];
     var contentDisplay = content.style.display;
     function closeGalleryModal() {
+        if (document.getElementsByClassName('pswp__button--close')[0] != undefined) {
+            document.getElementsByClassName('pswp__button--close')[0].click();  //close the gallery lightbox, if it is open
+        }
         var galleryModal = document.getElementById("galleryFrame");
         galleryModal.style.display = "none";
         content.style.display = contentDisplay;
