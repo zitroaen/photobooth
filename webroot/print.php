@@ -131,7 +131,7 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
         } else {
             $response['success'] = false;
         }
-        $response['success'] = true;
+        
     } else {
         $response['success'] = false;
         $response['error'] = 'Photo could not be found for print command';
