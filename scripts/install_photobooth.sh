@@ -36,6 +36,7 @@ COMMON_PACKAGES=(
     'gphoto2'
     "php${PHP_VERSION}-gd"
     "php${PHP_VERSION}-mbstring"
+    "php${PHP_VERSION}-sqlite3"
 )
 
 EXTRA_PACKAGES=(
@@ -154,7 +155,7 @@ function general_setup() {
     chown www-data:www-data "$INSTALLFOLDERPATH"
     chown www-data:www-data /var/www
     
-  #  PHOTOBOOTH_LOG="$INSTALLFOLDERPATH/private/install.log"
+    #  PHOTOBOOTH_LOG="$INSTALLFOLDERPATH/private/install.log"
 }
 
 
@@ -164,7 +165,7 @@ function start_install() {
     info "### Now we are going to install Photobooth."
     cd /var/www/
     sudo -u www-data git clone https://github.com/zitroaen/photobooth photobooth
-    sudo mv photobooth/webroot/* html      
+    sudo mv photobooth/webroot/* html
 }
 
 function detect_browser() {
@@ -296,7 +297,7 @@ function ask_usb_sync() {
 function general_permissions() {
     info "### Setting permissions."
     chown -R www-data:www-data "$INSTALLFOLDERPATH"/
-   # chmod g+s "$INSTALLFOLDERPATH/private"
+    # chmod g+s "$INSTALLFOLDERPATH/private"
     gpasswd -a www-data plugdev
     gpasswd -a www-data video
     gpasswd -a "$USERNAME" www-data

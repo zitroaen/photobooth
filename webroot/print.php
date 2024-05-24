@@ -2,7 +2,7 @@
 
 #Load Settings
 include ('config/config.php');
-
+include ('photoManager.php');
 
 
 $dir = $printingPath; # get path for photo storage
@@ -10,16 +10,31 @@ $frame = $framePath;
 
 
 $response = ['success' => false, 'error' => ''];
-if (!isset($_GET["fileName"]) or empty($_GET["fileName"])) {
-    header('Content-Type: application/json; charset=utf-8');
-    $response['error'] = 'No target specified';
-    echo json_encode($response);
-    exit;
+if (!isset($_GET["fileName"]) or empty($_GET["fileName"])) { //if no filename is given...
+    if (!isset($_GET["id"]) or empty($_GET["id"]) or !is_numeric($_GET["id"])) { //..and no id
+        header('Content-Type: application/json; charset=utf-8');
+        $response['error'] = 'No target specified';
+        $response['seletedId'] = $_GET["id"];
+        echo json_encode($response);
+        exit;
+    } else {        //only an id is given
+        $id = $_GET["id"];
+        if (idExists($id)) {
+
+            $sourcePhotoPath = realpath(getPhotoInfo($id)['originalPath']);
+            $fileName= getPhotoInfo($id)['fileName'];
+        } else {
+            error_log('Selected ID does not exist' . $id);
+            $response['error'] = 'Selected ID does not exist';
+            $response['success'] = false;
+        }
+    }
 } else {
     $fileName = htmlspecialchars($_GET["fileName"]);
+    $sourcePhotoPath = $photoPath . $fileName;
 }
 
-$sourcePhotoPath = $photoPath . $fileName;
+
 
 //$sourcePhotoPath = htmlspecialchars($_GET["fileName"]);
 
@@ -33,12 +48,9 @@ $targetHeight = $printTargetHeight;
 if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
 
     ini_set('memory_limit', '512M');
-
-
     // Create image instances
     $dest = imagecreatefromjpeg($sourcePhotoPath);
     $src = imagecreatefrompng($frame);
-
 
     //generate needed variables
     $resizedDest = imagecreatetruecolor($targetWidth, $targetHeight); //create empty destination picture for resized photo
@@ -51,7 +63,6 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
 
     $dst_width = $targetWidth;
     $dst_height = $targetHeight;
-
 
     $src_width = 0;
     $src_height = 0;
@@ -115,9 +126,9 @@ if (file_exists($framePath) and file_exists($sourcePhotoPath)) {
         exec($cmd, $output, $returnValue);
         $response['printingResponse'] = $output;
         $response['printingReturnValue'] = $returnValue;
-        if (§output==0){
+        if ($output == 0) {
             $response['success'] = true;
-        }else {
+        } else {
             $response['success'] = false;
         }
         $response['success'] = true;

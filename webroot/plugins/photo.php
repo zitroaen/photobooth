@@ -100,7 +100,6 @@
             photoHttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     response = JSON.parse(this.responseText)
-                    console.log(response);
                     const photoWrapper = document.createElement('div');
                     photoWrapper.classList.add('photoWrapper');
                     photoWrapper.style.backgroundImage = "url('" + response.path + response.fileName+"')";

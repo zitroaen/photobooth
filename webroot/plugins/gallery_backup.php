@@ -5,91 +5,8 @@
         </div>
 </a>
 
-<link rel="stylesheet" href="<?php echo $photoswipeCssPath; ?>">
-
-
-
-<script type="module">
-    import PhotoSwipeLightbox from '<?php echo './' . $photoswipeLightboxPath; ?>'
-    const options = {
-        gallery: '#my-gallery',
-        children: 'a',
-        pswpModule: () => import('<?php echo './' . $photoswipeCorePath; ?>')
-    }
-
-
-    const lightbox = new PhotoSwipeLightbox(options);
-    lightbox.on('uiRegister', function () {
-        lightbox.pswp.ui.registerElement({
-            name: 'print-button',
-            order: 8,
-            isButton: true,
-            //  tagName: 'a',
-
-            // SVG with outline
-            /* html: {
-                 isCustomSVG: true,
-                 inner: '<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
-                 outlineID: 'pswp__icn-download'
-             },*/
-
-            // Or provide full svg:
-            html: '<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" class="pswp__icn"><path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" /></svg>',
-
-            // Or provide any other markup:
-            // html: '<i class="fa-solid fa-download"></i>' 
-
-            onInit: (el, pswp) => {
-                el.setAttribute('download', '');
-                el.setAttribute('target', '_blank');
-                el.setAttribute('rel', 'noopener');
-
-                pswp.on('change', () => {
-                    el.setAttribute('data-id', pswp.currSlide.data.element.getAttribute('data-id'));
-                });
-            },
-
-            onClick: (event, el) => {
-                if (confirm('<?php echo $printConfirmation; ?>')) {
-                    printId(el.getAttribute('data-id'));
-                }
-            }
-
-        });
-    });
-
-
-
-    lightbox.init();
-
-
-
-    function printId(id) {
-            var reqUrl = "print.php?id=" + id;
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    response = JSON.parse(this.responseText);
-
-                    if (response.success == true) { //If everything went well, add success class for 5 seconds
-                        //if everything went well
-                        console.log(response);
-                    } else {// if something went wrong, log response and add fail class for 5 seconds
-                        //if something went wrong
-                        console.log(response);
-                    }
-                }
-            };
-            xhttp.open("GET", reqUrl, true);
-            xhttp.send();
-        }
-
-
-
-</script>
-
-
 <script>
+
 
     window.addEventListener("load", function (event) {
 
@@ -126,47 +43,12 @@
             loadGalleryImages();
         }
 
-        var galleryFrame = document.getElementById("my-gallery");
+
+
+        var galleryFrame = document.getElementById("galleryFrame").getElementsByClassName('modal-frame')[0].getElementsByClassName('modal-content')[0];
+
 
         function loadGalleryImages() {
-            galleryFrame.innerHTML = '';
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    response = JSON.parse(this.responseText)
-                    console.log(response);
-                    response.data.forEach(element => {
-                        const photoAElement = document.createElement("a");
-                        photoAElement.setAttribute('href', element.filepath);
-                        photoAElement.setAttribute('data-pswp-width', element.width);
-                        photoAElement.setAttribute('data-pswp-height', element.height);
-                        photoAElement.setAttribute('data-id', element.id);
-                        photoAElement.setAttribute('target', '_blank');
-                        const thumbnailElement = document.createElement("img");
-                        thumbnailElement.setAttribute('src', element.thumbnailPath);
-                        photoAElement.appendChild(thumbnailElement);
-                        galleryFrame.appendChild(photoAElement);
-
-
-                    });
-                }
-            };
-            xhttp.open("GET", "getPhotoList.php", true);
-            xhttp.send();
-        }
-
-
-
-
-
-       
-
-
-
-        //OLD STUFF ##################################################     
-
-
-        function loadGalleryImagesOld() {
             galleryFrame.innerHTML = '';
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -188,8 +70,6 @@
             xhttp.open("GET", "getPhotoList.php", true);
             xhttp.send();
         }
-
-
     }, false);
 
 
@@ -239,6 +119,8 @@
             }
         });
     }
+
+
 
 
     // When the user clicks on an image

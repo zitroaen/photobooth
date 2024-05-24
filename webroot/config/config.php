@@ -12,8 +12,10 @@ $phpStyle = 'styles/phpStyle.php';
 #Texts
 $title = 'websiteTitlePhotobox';
 $headline = 'Überschrift';
+$printConfirmation = 'Möchtest du das Foto drucken? Das Drucken dauert etwa 50 Sekunden.'; #Test that is being displayed to confirm printing
 $subHeadline = 'Name & Name';
 $fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+
 #Buttons
 $galleryButtonText = "Galerie";
 $galleryButtonImage = "resources/img/galleryButtonImage.svg";
@@ -47,7 +49,7 @@ $displayTime = 10; #How long the picture should be showed after taking it
 
 #
 date_default_timezone_set('Europe/Berlin'); # Timezone for the picture filename
-$photoPath = 'resources/photos/original/';  #Path where photos should be stored. Must end in a "/"
+$photoPath ='resources/photos/original/';  #Path where photos should be stored. Must end in a "/"
 $fileExtension = 'jpg';
 
 
@@ -59,15 +61,15 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testi
     $takePhotoCommand = 'gphoto2 --capture-image-and-download --filename=%s'; #%s is the placeholder for the filename that the script will automatically genrate 
 }
 
-
+#thumbnails
+$thumbnailWidth = 600; #Width of the thumbnail in Pixels --> Height will be automatically dependent on the aspect ratio
+$thumbnailPath = 'resources/photos/thumbs'; #Path where thumbnails should be stored. Without a trailing "/"
 
 #gallery
-$nanogallery2Path = 'resources/js/nanogallery2/jquery.nanogallery2.core.js'; # path to the nanogallery2 installation
-$nanogallery2PhotoProviderPath = 'resources/js/nanogallery2/jquery.nanogallery2.data_nano_photos_provider2.js'; # path to the nanogallery2 Photo Provider module
-$nanogallery2Css = 'resources/js/nanogallery2/css/nanogallery2.css'; #path to the nanogallery2 CSS file
+$photoswipeCorePath ='scripts/photoswipe/photoswipe.esm.js';
+$photoswipeLightboxPath = 'scripts/photoswipe/photoswipe-lightbox.esm.js';
+$photoswipeCssPath =  'scripts/photoswipe/photoswipe.css';
 
-$nanoPhotosProviderPath = 'resources/photos/nano_photos_provider2.php';# path to the photos provider
-$jqueryPath = 'resources/js/jquery-3.7.1.min.js'; #Path to jquery
 
 
 #printing
@@ -83,6 +85,10 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { #detect OS of Server for testi
     #
 }
 
+
+#photoManager
+$dbFilename = "photos.db"; #Filename for the Database that stores the Info regarding the photo Libary
+$dbPath = $_SERVER['DOCUMENT_ROOT'] . "/db/"; #Folder where the photo database is stored. Must end in a "/"
 
 chdir($prevCwd);
 ?>

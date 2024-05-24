@@ -44,7 +44,7 @@ include ('config/config.php');
     <div id="galleryFrame" class="modal">
         <div class="modal-frame">
             <span class="close">&times;</span>
-            <div class="modal-content">
+            <div id="my-gallery" class="modal-content">
 
             </div>
         </div>
