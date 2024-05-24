@@ -20,7 +20,7 @@
     }
 
 
-    const lightbox = new PhotoSwipeLightbox(options);
+    window.lightbox = new PhotoSwipeLightbox(options);
     lightbox.on('uiRegister', function () {
         lightbox.pswp.ui.registerElement({
             name: 'print-button',
@@ -136,7 +136,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     response = JSON.parse(this.responseText)
-                    console.log(response);
+                   // console.log(response);
                     response.data.forEach(element => {
                         const photoAElement = document.createElement("a");
                         photoAElement.setAttribute('data-pswp-src', element.filepath);
