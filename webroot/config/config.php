@@ -28,7 +28,7 @@ $printButtonImage = "resources/img/printButtonImage.svg";
 
 #Images
 $logoPath = 'resources/img/Logo.svg';
-$backgroundImage = 'resources/img/background1.jpg';
+$backgroundImage = 'resources/img/background.jpg';
 
 ##########Photos
 $framePath = 'resources/frames/frame.png';
