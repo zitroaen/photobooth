@@ -137,7 +137,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     response = JSON.parse(this.responseText)
                     // console.log(response);
-                    response.data.forEach(element => {
+                    response.data.slice().reverse().forEach(element => {
                         const photoAElement = document.createElement("a");
                         photoAElement.setAttribute('data-pswp-src', element.filepath);
                         photoAElement.setAttribute('data-pswp-width', element.width);

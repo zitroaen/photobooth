@@ -11,7 +11,7 @@ include ('config/config.php');
 
     <?php include ($phpStyle); ?>
     <title> <?php echo $title; ?> </title>
-
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 
 <body>
